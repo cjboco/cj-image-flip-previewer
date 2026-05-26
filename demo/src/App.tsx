@@ -64,7 +64,7 @@ export function App() {
           </p>
 
           <div className="preview-row">
-            <div className="preview-box small">
+            <div className="preview-box">
               <FlipPreviewer
                 mode="hover"
                 images={popeye}
@@ -92,7 +92,7 @@ export function App() {
           </p>
 
           <div className="preview-row">
-            <div className="preview-box small">
+            <div className="preview-box">
               <FlipPreviewer
                 mode="hover"
                 images={trainRobbery}
@@ -123,7 +123,7 @@ export function App() {
           </p>
 
           <div className="preview-row">
-            <div className="preview-box large">
+            <div className="preview-box">
               <FlipPreviewer
                 mode="position"
                 images={bugsBunny}
@@ -152,7 +152,7 @@ export function App() {
           </p>
 
           <div className="preview-row">
-            <div className="preview-box large">
+            <div className="preview-box">
               <FlipPreviewer
                 mode="position"
                 images={bugsBunny}
@@ -180,7 +180,7 @@ export function App() {
           </p>
 
           <div className="preview-row">
-            <div className="preview-box small">
+            <div className="preview-box">
               <FlipPreviewer
                 mode="hover"
                 images={popeye}
