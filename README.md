@@ -147,6 +147,7 @@ function ControlledPreviewer() {
 | `delay` | `number` | `450` | Ms between frames (hover mode only) |
 | `autoPlay` | `boolean` | `false` | Auto-start animation (hover mode only) |
 | `showProgress` | `boolean` | `true` | Show preload progress bar (hover mode only) |
+| `showCursor` | `boolean` | `true` | Show horizontal resize cursor (position mode only) |
 | `debug` | `boolean` | `false` | Show debug overlay (position mode only) |
 | `className` | `string` | — | Additional CSS class(es) |
 | `style` | `CSSProperties` | — | Additional inline styles |
