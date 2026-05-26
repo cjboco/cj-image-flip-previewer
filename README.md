@@ -2,6 +2,8 @@
 
 A React component for interactive image previews. Zero dependencies beyond React 19+.
 
+**[Live Demo](https://cjboco.github.io/cj-image-flip-previewer/)**
+
 One component, two modes:
 - **`mode="position"`** — Image changes based on horizontal mouse/touch position (360-degree product views)
 - **`mode="hover"`** — Images auto-cycle on a timer when hovered (video thumbnail previews)
