@@ -1,14 +1,14 @@
-# cj-image-flipbox
+# cj-image-flip-previewer
 
 React components for interactive image previews. Zero dependencies beyond React 19+.
 
-- **`<ImageFlipBox>`** — Flip through images based on mouse/touch position. Ideal for 360-degree product views.
-- **`<ImageVideoPreviewer>`** — Animate through image frames on hover, like a video thumbnail previewer.
+- **`<FlipPreviewer>`** — Flip through images based on mouse/touch position. Ideal for 360-degree product views.
+- **`<VideoPreviewer>`** — Animate through image frames on hover, like a video thumbnail previewer.
 
 ## Install
 
 ```bash
-npm install cj-image-flipbox
+npm install cj-image-flip-previewer
 ```
 
 ## Setup
@@ -16,23 +16,23 @@ npm install cj-image-flipbox
 Import the stylesheet once in your app (e.g., in your root layout or entry file):
 
 ```tsx
-import "cj-image-flipbox/styles.css";
+import "cj-image-flip-previewer/styles.css";
 ```
 
 ---
 
-## ImageFlipBox
+## FlipPreviewer
 
 Displays a single image that changes based on the horizontal mouse/touch position within the container. Move left-to-right to cycle through all images.
 
 ### Basic Usage
 
 ```tsx
-import { ImageFlipBox } from "cj-image-flipbox";
+import { FlipPreviewer } from "cj-image-flip-previewer";
 
 function ProductView() {
   return (
-    <ImageFlipBox
+    <FlipPreviewer
       width={320}
       height={240}
       images={[
@@ -51,7 +51,7 @@ function ProductView() {
 Each image can have its own link:
 
 ```tsx
-<ImageFlipBox
+<FlipPreviewer
   width={320}
   height={240}
   images={[
@@ -65,7 +65,7 @@ Each image can have its own link:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `images` | `FlipBoxImage[]` | *required* | Array of images to flip through |
+| `images` | `FlipPreviewerImage[]` | *required* | Array of images to flip through |
 | `width` | `number \| string` | *required* | Container width |
 | `height` | `number \| string` | *required* | Container height |
 | `debug` | `boolean` | `false` | Show debug overlay with coordinates and index |
@@ -73,7 +73,7 @@ Each image can have its own link:
 | `style` | `CSSProperties` | — | Additional inline styles |
 | `onIndexChange` | `(index: number) => void` | — | Called when the active image changes |
 
-### FlipBoxImage
+### FlipPreviewerImage
 
 | Property | Type | Description |
 |----------|------|-------------|
@@ -86,18 +86,18 @@ Each image can have its own link:
 
 ---
 
-## ImageVideoPreviewer
+## VideoPreviewer
 
 Displays an image that animates through a sequence of frames on hover, like a video thumbnail preview (similar to Netflix/YouTube thumbnails).
 
 ### Basic Usage
 
 ```tsx
-import { ImageVideoPreviewer } from "cj-image-flipbox";
+import { VideoPreviewer } from "cj-image-flip-previewer";
 
 function VideoThumbnail() {
   return (
-    <ImageVideoPreviewer
+    <VideoPreviewer
       width={160}
       height={110}
       poster="/images/thumbnail.jpg"
@@ -117,7 +117,7 @@ function VideoThumbnail() {
 ### With Link and Auto-Play
 
 ```tsx
-<ImageVideoPreviewer
+<VideoPreviewer
   width={320}
   height={240}
   images={["/frame1.jpg", "/frame2.jpg", "/frame3.jpg"]}
@@ -134,14 +134,14 @@ Use a ref to programmatically start and pause the animation:
 
 ```tsx
 import { useRef } from "react";
-import { ImageVideoPreviewer, type ImageVideoPreviewerRef } from "cj-image-flipbox";
+import { VideoPreviewer, type VideoPreviewerRef } from "cj-image-flip-previewer";
 
 function ControlledPreviewer() {
-  const previewerRef = useRef<ImageVideoPreviewerRef>(null);
+  const previewerRef = useRef<VideoPreviewerRef>(null);
 
   return (
     <>
-      <ImageVideoPreviewer
+      <VideoPreviewer
         ref={previewerRef}
         width={320}
         height={240}
@@ -172,9 +172,9 @@ function ControlledPreviewer() {
 | `style` | `CSSProperties` | — | Additional inline styles |
 | `onFrameChange` | `(index: number) => void` | — | Called when the displayed frame changes |
 | `onImagesLoaded` | `() => void` | — | Called when all images finish preloading |
-| `ref` | `Ref<ImageVideoPreviewerRef>` | — | Imperative handle for start/pause |
+| `ref` | `Ref<VideoPreviewerRef>` | — | Imperative handle for start/pause |
 
-### ImageVideoPreviewerRef
+### VideoPreviewerRef
 
 | Method | Description |
 |--------|-------------|
@@ -188,13 +188,13 @@ function ControlledPreviewer() {
 The default styles use BEM-style class names that you can override:
 
 ```css
-/* ImageFlipBox */
-.cj-image-flipbox { }
-.cj-image-flipbox__img { }
-.cj-image-flipbox__link { }
-.cj-image-flipbox__debug { }
+/* FlipPreviewer */
+.cj-flip-previewer { }
+.cj-flip-previewer__img { }
+.cj-flip-previewer__link { }
+.cj-flip-previewer__debug { }
 
-/* ImageVideoPreviewer */
+/* VideoPreviewer */
 .cj-video-previewer { }
 .cj-video-previewer__img { }
 .cj-video-previewer__link { }

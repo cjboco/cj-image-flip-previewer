@@ -8,14 +8,14 @@ import {
   type Ref,
 } from "react";
 
-export interface ImageVideoPreviewerRef {
+export interface VideoPreviewerRef {
   /** Start the frame animation */
   start: () => void;
   /** Pause the animation and reset to the first frame */
   pause: () => void;
 }
 
-export interface ImageVideoPreviewerProps {
+export interface VideoPreviewerProps {
   /** Array of image URLs to cycle through as frames */
   images: string[];
   /** The initial/default image displayed before hover. If omitted, uses the first item in `images`. */
@@ -45,10 +45,10 @@ export interface ImageVideoPreviewerProps {
   /** Callback fired when all images have finished preloading */
   onImagesLoaded?: () => void;
   /** Imperative handle ref for start/pause control */
-  ref?: Ref<ImageVideoPreviewerRef>;
+  ref?: Ref<VideoPreviewerRef>;
 }
 
-export function ImageVideoPreviewer({
+export function VideoPreviewer({
   images,
   poster,
   delay = 450,
@@ -64,7 +64,7 @@ export function ImageVideoPreviewer({
   onFrameChange,
   onImagesLoaded,
   ref,
-}: ImageVideoPreviewerProps) {
+}: VideoPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 

@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback, useEffect, type CSSProperties } from "react";
 
-export interface FlipBoxImage {
+export interface FlipPreviewerImage {
   /** Image source URL */
   src: string;
   /** Alt text for the image */
@@ -15,9 +15,9 @@ export interface FlipBoxImage {
   rel?: string;
 }
 
-export interface ImageFlipBoxProps {
+export interface FlipPreviewerProps {
   /** Array of images to flip through based on mouse/touch position */
-  images: FlipBoxImage[];
+  images: FlipPreviewerImage[];
   /** Width of the component (CSS value) */
   width: number | string;
   /** Height of the component (CSS value) */
@@ -32,7 +32,7 @@ export interface ImageFlipBoxProps {
   onIndexChange?: (index: number) => void;
 }
 
-export function ImageFlipBox({
+export function FlipPreviewer({
   images,
   width,
   height,
@@ -40,7 +40,7 @@ export function ImageFlipBox({
   className,
   style,
   onIndexChange,
-}: ImageFlipBoxProps) {
+}: FlipPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [debugInfo, setDebugInfo] = useState("");
@@ -96,7 +96,7 @@ export function ImageFlipBox({
     <img
       src={activeImage.src}
       alt={activeImage.alt ?? ""}
-      className="cj-image-flipbox__img"
+      className="cj-flip-previewer__img"
       draggable={false}
     />
   );
@@ -104,7 +104,7 @@ export function ImageFlipBox({
   return (
     <div
       ref={containerRef}
-      className={`cj-image-flipbox${className ? ` ${className}` : ""}`}
+      className={`cj-flip-previewer${className ? ` ${className}` : ""}`}
       style={containerStyle}
       onPointerMove={handlePointerMove}
     >
@@ -114,7 +114,7 @@ export function ImageFlipBox({
           title={activeImage.title}
           target={activeImage.target}
           rel={activeImage.rel}
-          className="cj-image-flipbox__link"
+          className="cj-flip-previewer__link"
         >
           {imgElement}
         </a>
@@ -123,7 +123,7 @@ export function ImageFlipBox({
       )}
 
       {debug && (
-        <div className="cj-image-flipbox__debug">{debugInfo}</div>
+        <div className="cj-flip-previewer__debug">{debugInfo}</div>
       )}
     </div>
   );

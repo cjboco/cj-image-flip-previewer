@@ -1,8 +1,8 @@
-export { ImageFlipBox } from "./ImageFlipBox";
-export type { ImageFlipBoxProps, FlipBoxImage } from "./ImageFlipBox";
+export { FlipPreviewer } from "./FlipPreviewer";
+export type { FlipPreviewerProps, FlipPreviewerImage } from "./FlipPreviewer";
 
-export { ImageVideoPreviewer } from "./ImageVideoPreviewer";
+export { VideoPreviewer } from "./VideoPreviewer";
 export type {
-  ImageVideoPreviewerProps,
-  ImageVideoPreviewerRef,
-} from "./ImageVideoPreviewer";
+  VideoPreviewerProps,
+  VideoPreviewerRef,
+} from "./VideoPreviewer";

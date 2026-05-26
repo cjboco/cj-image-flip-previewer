@@ -1,10 +1,14 @@
-.cj-image-flipbox {
+/* ========================================
+   FlipPreviewer
+   ======================================== */
+
+.cj-flip-previewer {
   display: inline-block;
   user-select: none;
   touch-action: none;
 }
 
-.cj-image-flipbox__img {
+.cj-flip-previewer__img {
   display: block;
   width: 100%;
   height: 100%;
@@ -12,13 +16,13 @@
   pointer-events: none;
 }
 
-.cj-image-flipbox__link {
+.cj-flip-previewer__link {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.cj-image-flipbox__debug {
+.cj-flip-previewer__debug {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -33,7 +37,7 @@
 }
 
 /* ========================================
-   ImageVideoPreviewer
+   VideoPreviewer
    ======================================== */
 
 .cj-video-previewer {
