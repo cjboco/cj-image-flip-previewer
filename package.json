@@ -1,0 +1,57 @@
+{
+  "name": "cj-image-previewer",
+  "version": "1.0.0",
+  "description": "React components for interactive image previews — flip through images by mouse position (ImageFlipBox) or animate frames on hover like a video previewer (ImageVideoPreviewer).",
+  "author": "Doug Jones",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "react",
+    "image",
+    "flipbox",
+    "video-previewer",
+    "360",
+    "product-view",
+    "interactive",
+    "mouseover",
+    "hover",
+    "thumbnail",
+    "animation"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0"
+  }
+}
