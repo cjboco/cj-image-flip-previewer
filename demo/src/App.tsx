@@ -144,7 +144,36 @@ export function App() {
 />`}</CodeBlock>
         </section>
 
-        {/* ── Example 4: Hover mode with autoPlay ──────── */}
+        {/* ── Example 4: Position mode, no cursor ─────── */}
+        <section className="example">
+          <h2>Position Mode — No Cursor</h2>
+          <p>
+            Same as position mode but with the horizontal resize cursor disabled
+            via <code>showCursor=&#123;false&#125;</code>.
+          </p>
+
+          <div className="preview-row">
+            <div className="preview-box large">
+              <FlipPreviewer
+                mode="position"
+                images={bugsBunny}
+                width={320}
+                height={240}
+                showCursor={false}
+              />
+            </div>
+          </div>
+
+          <CodeBlock>{`<FlipPreviewer
+  mode="position"
+  images={bugsBunny}
+  width={320}
+  height={240}
+  showCursor={false}
+/>`}</CodeBlock>
+        </section>
+
+        {/* ── Example 5: Hover mode with autoPlay ──────── */}
         <section className="example">
           <h2>Hover Mode — Auto Play</h2>
           <p>

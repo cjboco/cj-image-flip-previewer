@@ -55,6 +55,8 @@ export interface FlipPreviewerProps {
   autoPlay?: boolean;
   /** Show a progress bar while images preload — only used in "hover" mode (default: true) */
   showProgress?: boolean;
+  /** Show a horizontal resize cursor when in "position" mode (default: true) */
+  showCursor?: boolean;
   /** Show debug overlay with mouse coordinates and position info — only used in "position" mode */
   debug?: boolean;
   /** Additional CSS class name(s) for the container */
@@ -78,6 +80,7 @@ export function FlipPreviewer({
   delay = 450,
   autoPlay = false,
   showProgress = true,
+  showCursor = true,
   debug = false,
   className,
   style,
@@ -238,7 +241,7 @@ export function FlipPreviewer({
     width: width ?? "100%",
     height: height ?? "100%",
     overflow: "hidden",
-    cursor: hasLink || mode === "position" ? "pointer" : "default",
+    cursor: hasLink ? "pointer" : mode === "position" && showCursor ? "col-resize" : "default",
     ...style,
   };
 
