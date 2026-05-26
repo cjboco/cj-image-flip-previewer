@@ -1,7 +1,3 @@
-/* ========================================
-   FlipPreviewer
-   ======================================== */
-
 .cj-flip-previewer {
   display: inline-block;
   user-select: none;
@@ -36,30 +32,7 @@
   z-index: 10;
 }
 
-/* ========================================
-   VideoPreviewer
-   ======================================== */
-
-.cj-video-previewer {
-  display: inline-block;
-  user-select: none;
-}
-
-.cj-video-previewer__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-.cj-video-previewer__link {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.cj-video-previewer__progress {
+.cj-flip-previewer__progress {
   position: absolute;
   top: 0;
   left: 0;
@@ -70,7 +43,7 @@
   overflow: hidden;
 }
 
-.cj-video-previewer__progress-bar {
+.cj-flip-previewer__progress-bar {
   height: 100%;
   background: #6bc4f7;
   transition: width 0.2s ease;
