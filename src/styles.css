@@ -1,50 +1,52 @@
-.cj-flip-previewer {
-  display: inline-block;
-  user-select: none;
-  touch-action: none;
-}
+@layer components {
+  .cj-flip-previewer {
+    display: inline-block;
+    user-select: none;
+    touch-action: none;
+  }
 
-.cj-flip-previewer__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
+  .cj-flip-previewer__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
 
-.cj-flip-previewer__link {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+  .cj-flip-previewer__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 
-.cj-flip-previewer__debug {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  font-family: monospace;
-  font-size: 11px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 3px;
-  pointer-events: none;
-  z-index: 10;
-}
+  .cj-flip-previewer__debug {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-family: monospace;
+    font-size: var(--cj-flip-debug-font-size, 11px);
+    background: var(--cj-flip-debug-bg, rgba(0, 0, 0, 0.6));
+    color: var(--cj-flip-debug-color, #fff);
+    padding: 2px 6px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 10;
+  }
 
-.cj-flip-previewer__progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 20;
-  overflow: hidden;
-}
+  .cj-flip-previewer__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--cj-flip-progress-height, 4px);
+    background: var(--cj-flip-progress-bg, rgba(0, 0, 0, 0.3));
+    z-index: 20;
+    overflow: hidden;
+  }
 
-.cj-flip-previewer__progress-bar {
-  height: 100%;
-  background: #6bc4f7;
-  transition: width 0.2s ease;
+  .cj-flip-previewer__progress-bar {
+    height: 100%;
+    background: var(--cj-flip-progress-color, #6bc4f7);
+    transition: width var(--cj-flip-progress-speed, 0.2s) ease;
+  }
 }
