@@ -241,7 +241,7 @@ export function FlipPreviewer({
     width: width ?? "100%",
     height: height ?? "100%",
     overflow: "hidden",
-    cursor: hasLink ? "pointer" : mode === "position" && showCursor ? "col-resize" : "default",
+    cursor: hasLink ? "pointer" : mode === "position" && showCursor ? "ew-resize" : "default",
     ...style,
   };
 
