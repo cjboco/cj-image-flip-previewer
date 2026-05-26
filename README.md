@@ -168,9 +168,66 @@ function ControlledPreviewer() {
 
 ---
 
-## CSS Customization
+## Styling
 
-The default styles use BEM-style class names that you can override:
+### Default CSS
+
+The included stylesheet uses `@layer components`, which works both as standalone CSS and with Tailwind CSS v4+. Import it once in your app:
+
+```tsx
+import "cj-image-flip-previewer/styles.css";
+```
+
+### Using with Tailwind CSS
+
+Since the component styles are in the `components` layer, Tailwind utility classes automatically take priority — no `!important` needed. Just add classes via the `className` prop:
+
+```tsx
+<FlipPreviewer
+  className="rounded-lg shadow-md cursor-grab"
+  width={320}
+  height={240}
+  images={images}
+/>
+```
+
+If you prefer full Tailwind control and don't want the default stylesheet at all, simply skip the CSS import. The component applies its essential layout styles inline, so it will still function correctly. You can then style everything with utility classes.
+
+### CSS Custom Properties
+
+The stylesheet exposes CSS variables for common customizations. Override them in your own CSS or Tailwind's `globals.css`:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--cj-flip-progress-height` | `4px` | Height of the preload progress bar |
+| `--cj-flip-progress-bg` | `rgba(0,0,0,0.3)` | Progress bar track background |
+| `--cj-flip-progress-color` | `#6bc4f7` | Progress bar fill color |
+| `--cj-flip-progress-speed` | `0.2s` | Progress bar transition speed |
+| `--cj-flip-debug-font-size` | `11px` | Debug overlay font size |
+| `--cj-flip-debug-bg` | `rgba(0,0,0,0.6)` | Debug overlay background |
+| `--cj-flip-debug-color` | `#fff` | Debug overlay text color |
+
+**Override globally:**
+
+```css
+:root {
+  --cj-flip-progress-color: hotpink;
+  --cj-flip-progress-height: 6px;
+}
+```
+
+**Override per instance:**
+
+```tsx
+<FlipPreviewer
+  style={{ '--cj-flip-progress-color': '#facc15' } as CSSProperties}
+  images={images}
+/>
+```
+
+### BEM Class Names
+
+For more targeted CSS overrides, all elements use BEM-style class names:
 
 ```css
 .cj-flip-previewer { }
