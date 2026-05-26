@@ -39,10 +39,16 @@ export interface FlipPreviewerProps {
   mode?: "position" | "hover";
   /** Array of images to flip through */
   images: FlipPreviewerImage[];
-  /** Width of the component (CSS value) */
-  width: number | string;
-  /** Height of the component (CSS value) */
-  height: number | string;
+  /** Width of the component (CSS value). Omit to fill parent at 100%. */
+  width?: number | string;
+  /** Height of the component (CSS value). Omit to fill parent at 100%. */
+  height?: number | string;
+  /**
+   * How images fit within the container:
+   * - `"cover"` — image covers the entire container, may crop (default)
+   * - `"contain"` — image fits entirely within the container, may letterbox
+   */
+  fit?: "cover" | "contain";
   /** Delay in ms between frame transitions — only used in "hover" mode (default: 450) */
   delay?: number;
   /** Start animating automatically without hover — only used in "hover" mode (default: false) */
@@ -68,6 +74,7 @@ export function FlipPreviewer({
   images,
   width,
   height,
+  fit = "cover",
   delay = 450,
   autoPlay = false,
   showProgress = true,
@@ -160,8 +167,7 @@ export function FlipPreviewer({
       startAnimation();
     }
     return () => clearTimer();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode, autoPlay, allLoaded]);
+  }, [mode, autoPlay, allLoaded, startAnimation, clearTimer]);
 
   // Expose start/pause via ref (hover mode)
   useImperativeHandle(
@@ -215,6 +221,7 @@ export function FlipPreviewer({
   );
 
   // Reset index if images change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional trigger when images change
   useEffect(() => {
     setActiveIndex(0);
     activeIndexRef.current = 0;
@@ -228,8 +235,8 @@ export function FlipPreviewer({
 
   const containerStyle: CSSProperties = {
     position: "relative",
-    width,
-    height,
+    width: width ?? "100%",
+    height: height ?? "100%",
     overflow: "hidden",
     cursor: hasLink || mode === "position" ? "pointer" : "default",
     ...style,
@@ -240,6 +247,7 @@ export function FlipPreviewer({
       src={activeImage.src}
       alt={activeImage.alt ?? ""}
       className="cj-flip-previewer__img"
+      style={{ objectFit: fit }}
       draggable={false}
     />
   );
@@ -262,6 +270,7 @@ export function FlipPreviewer({
     images.length > 0 ? (loadedCount / images.length) * 100 : 0;
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: container tracks pointer position for image flipping
     <div
       ref={containerRef}
       className={`cj-flip-previewer${className ? ` ${className}` : ""}`}
