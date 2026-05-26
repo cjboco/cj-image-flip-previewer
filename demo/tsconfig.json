@@ -10,9 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client"],
-    "paths": {
-      "cj-image-flip-previewer": ["../src/index.ts"]
-    }
+    "rootDir": ".."
   },
   "include": ["src", "../src/index.ts", "../src/FlipPreviewer.tsx"]
 }

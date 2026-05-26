@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
-import { FlipPreviewer } from "cj-image-flip-previewer";
+import { FlipPreviewer } from "../../src";
 const BASE = import.meta.env.BASE_URL;
 const bettyBoop = [
     "000030", "000060", "000090", "000120", "000150", "000180", "000210",
