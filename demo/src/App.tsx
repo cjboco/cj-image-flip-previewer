@@ -4,15 +4,15 @@ import type { FlipPreviewerImage } from "../../src";
 
 const BASE = import.meta.env.BASE_URL;
 
-const popeye: FlipPreviewerImage[] = Array.from({ length: 120 }, (_, i) =>
-  String(i + 1).padStart(4, "0"),
+const popeye: FlipPreviewerImage[] = Array.from({ length: 30 }, (_, i) =>
+  String(i * 4 + 1).padStart(4, "0"),
 ).map((n) => ({
   src: `${BASE}images/popeye_frames/popeye_the_sailor_meets_sinbad_the_sailor_1936_${n}.webp`,
   alt: `Popeye frame ${n}`,
 }));
 
-const trainRobbery: FlipPreviewerImage[] = Array.from({ length: 120 }, (_, i) =>
-  String(i + 1).padStart(4, "0"),
+const trainRobbery: FlipPreviewerImage[] = Array.from({ length: 30 }, (_, i) =>
+  String(i * 4 + 1).padStart(4, "0"),
 ).map((n) => ({
   src: `${BASE}images/train_frames/the_great_train_robbery_1903_${n}.webp`,
   alt: `Train Robbery frame ${n}`,
