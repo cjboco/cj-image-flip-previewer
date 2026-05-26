@@ -4,25 +4,24 @@ import type { FlipPreviewerImage } from "../../src";
 
 const BASE = import.meta.env.BASE_URL;
 
-const bettyBoop: FlipPreviewerImage[] = [
-  "000030", "000060", "000090", "000120", "000150", "000180", "000210",
-  "000240", "000270", "000300", "000330", "000360", "000390", "000420", "000450",
-].map((n) => ({
-  src: `${BASE}images/bb_minnie_the_moocher_${n}.jpg`,
-  alt: `Betty Boop frame ${n}`,
+const popeye: FlipPreviewerImage[] = Array.from({ length: 120 }, (_, i) =>
+  String(i + 1).padStart(4, "0"),
+).map((n) => ({
+  src: `${BASE}images/popeye_frames/popeye_the_sailor_meets_sinbad_the_sailor_1936_${n}.webp`,
+  alt: `Popeye frame ${n}`,
 }));
 
-const superman: FlipPreviewerImage[] = [
-  "000030", "000120", "000150", "000210", "000240", "000270", "000300", "000330",
-].map((n) => ({
-  src: `${BASE}images/superman_the_mechanical_monsters_${n}.jpg`,
-  alt: `Superman frame ${n}`,
+const trainRobbery: FlipPreviewerImage[] = Array.from({ length: 120 }, (_, i) =>
+  String(i + 1).padStart(4, "0"),
+).map((n) => ({
+  src: `${BASE}images/train_frames/the_great_train_robbery_1903_${n}.webp`,
+  alt: `Train Robbery frame ${n}`,
 }));
 
 const bugsBunny: FlipPreviewerImage[] = [
   "00027", ...Array.from({ length: 23 }, (_, i) => String(188 + i).padStart(5, "0")),
 ].map((n) => ({
-  src: `${BASE}images/bugs_bunny_${n}.jpg`,
+  src: `${BASE}images/bugs_frames/bugs_bunny_${n}.jpg`,
   alt: `Bugs Bunny frame ${n}`,
 }));
 
@@ -68,20 +67,20 @@ export function App() {
             <div className="preview-box small">
               <FlipPreviewer
                 mode="hover"
-                images={bettyBoop}
-                width={160}
-                height={110}
+                images={popeye}
+                width={320}
+                height={240}
                 onIndexChange={setHoverIndex}
               />
             </div>
-            <span className="frame-info">Frame: {hoverIndex + 1} / {bettyBoop.length}</span>
+            <span className="frame-info">Frame: {hoverIndex + 1} / {popeye.length}</span>
           </div>
 
           <CodeBlock>{`<FlipPreviewer
   mode="hover"
-  images={bettyBoop}
-  width={160}
-  height={110}
+  images={popeye}
+  width={320}
+  height={240}
 />`}</CodeBlock>
         </section>
 
@@ -96,9 +95,9 @@ export function App() {
             <div className="preview-box small">
               <FlipPreviewer
                 mode="hover"
-                images={superman}
-                width={160}
-                height={110}
+                images={trainRobbery}
+                width={320}
+                height={180}
                 delay={100}
                 showProgress={false}
               />
@@ -107,9 +106,9 @@ export function App() {
 
           <CodeBlock>{`<FlipPreviewer
   mode="hover"
-  images={superman}
-  width={160}
-  height={110}
+  images={trainRobbery}
+  width={320}
+  height={180}
   delay={100}
   showProgress={false}
 />`}</CodeBlock>
@@ -128,8 +127,8 @@ export function App() {
               <FlipPreviewer
                 mode="position"
                 images={bugsBunny}
-                width={320}
-                height={240}
+                width={480}
+                height={360}
                 debug
               />
             </div>
@@ -138,8 +137,8 @@ export function App() {
           <CodeBlock>{`<FlipPreviewer
   mode="position"
   images={bugsBunny}
-  width={320}
-  height={240}
+  width={480}
+  height={360}
   debug
 />`}</CodeBlock>
         </section>
@@ -157,8 +156,8 @@ export function App() {
               <FlipPreviewer
                 mode="position"
                 images={bugsBunny}
-                width={320}
-                height={240}
+                width={480}
+                height={360}
                 showCursor={false}
               />
             </div>
@@ -167,8 +166,8 @@ export function App() {
           <CodeBlock>{`<FlipPreviewer
   mode="position"
   images={bugsBunny}
-  width={320}
-  height={240}
+  width={480}
+  height={360}
   showCursor={false}
 />`}</CodeBlock>
         </section>
@@ -184,9 +183,9 @@ export function App() {
             <div className="preview-box small">
               <FlipPreviewer
                 mode="hover"
-                images={bettyBoop}
-                width={160}
-                height={110}
+                images={popeye}
+                width={320}
+                height={240}
                 delay={300}
                 autoPlay
               />
@@ -195,9 +194,9 @@ export function App() {
 
           <CodeBlock>{`<FlipPreviewer
   mode="hover"
-  images={bettyBoop}
-  width={160}
-  height={110}
+  images={popeye}
+  width={320}
+  height={240}
   delay={300}
   autoPlay
 />`}</CodeBlock>
