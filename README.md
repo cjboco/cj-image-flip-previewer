@@ -73,7 +73,6 @@ Images auto-cycle on a timer when the mouse enters the container, like Netflix/Y
   mode="hover"
   width={160}
   height={110}
-  delay={450}
   images={[
     { src: "/images/frame-01.jpg" },
     { src: "/images/frame-02.jpg" },
@@ -142,9 +141,9 @@ function ControlledPreviewer() {
 |------|------|---------|-------------|
 | `mode` | `"position" \| "hover"` | `"position"` | How images cycle |
 | `images` | `FlipPreviewerImage[]` | *required* | Array of images |
-| `width` | `number \| string` | *required* | Container width |
-| `height` | `number \| string` | *required* | Container height |
-| `delay` | `number` | `450` | Ms between frames (hover mode only) |
+| `width` | `number \| string` | `"100%"` | Container width |
+| `height` | `number \| string` | `"100%"` | Container height |
+| `delay` | `number` | — | Ms between frames (hover mode only). Omit for max speed (requestAnimationFrame). |
 | `autoPlay` | `boolean` | `false` | Auto-start animation (hover mode only) |
 | `showProgress` | `boolean` | `true` | Show preload progress bar (hover mode only) |
 | `showCursor` | `boolean` | `true` | Show horizontal resize cursor (position mode only) |
