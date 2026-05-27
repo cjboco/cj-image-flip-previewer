@@ -208,13 +208,43 @@ export function FlipPreviewer({
 		setIsPointerDown(false);
 	}, [mode, autoPlay, stopAnimation]);
 
-	const handlePointerDown = useCallback(() => {
-		setIsPointerDown(true);
-	}, []);
+	const handlePointerDown = useCallback(
+		(e: React.PointerEvent<HTMLDivElement>) => {
+			setIsPointerDown(true);
 
-	const handlePointerUp = useCallback(() => {
-		setIsPointerDown(false);
-	}, []);
+			if (mode === "position") {
+				// Capture pointer so move events keep firing on touch devices
+				(e.target as HTMLElement).setPointerCapture(e.pointerId);
+
+				// Update index immediately on press
+				const container = containerRef.current;
+				if (container && images.length > 0) {
+					const rect = container.getBoundingClientRect();
+					const x = e.clientX - rect.left;
+					let pos = Math.floor((x / rect.width) * images.length);
+					pos = Math.max(0, Math.min(pos, images.length - 1));
+
+					if (pos !== activeIndexRef.current) {
+						activeIndexRef.current = pos;
+						setActiveIndex(pos);
+						onIndexChange?.(pos);
+					}
+				}
+			}
+		},
+		[mode, images.length, onIndexChange],
+	);
+
+	const handlePointerUp = useCallback(
+		(e: React.PointerEvent<HTMLDivElement>) => {
+			setIsPointerDown(false);
+
+			if (mode === "position") {
+				(e.target as HTMLElement).releasePointerCapture(e.pointerId);
+			}
+		},
+		[mode],
+	);
 
 	// ── Position mode: mouse-position-based ──────────────────────
 	const handlePointerMove = useCallback(
@@ -269,6 +299,7 @@ export function FlipPreviewer({
 					? "pointer"
 					: "default"
 				: "ew-resize",
+		touchAction: mode === "position" ? "none" : undefined,
 		...style,
 	};
 
