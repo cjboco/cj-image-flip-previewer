@@ -5,6 +5,23 @@
     touch-action: none;
   }
 
+  .cj-flip-previewer:focus-visible {
+    outline: var(--cj-flip-focus-outline, 2px solid #005fcc);
+    outline-offset: var(--cj-flip-focus-outline-offset, 2px);
+  }
+
+  .cj-flip-previewer__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .cj-flip-previewer__img {
     display: block;
     width: 100%;

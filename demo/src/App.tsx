@@ -52,10 +52,12 @@ export function App() {
 					rel="noopener noreferrer"
 				>
 					View on GitHub
+					<span aria-hidden="true"> ↗</span>
+					<span className="sr-only"> (opens in a new tab)</span>
 				</a>
 			</header>
 
-			<main className="examples">
+			<main id="main-content" className="examples">
 				{/* ── Example 1: Hover mode ─────────────────────── */}
 				<section className="example">
 					<h2>Hover Mode</h2>
@@ -214,6 +216,7 @@ export function App() {
 						rel="noopener noreferrer"
 					>
 						Creative Juices Bo. Co.
+						<span className="sr-only"> (opens in a new tab)</span>
 					</a>{" "}
 					&mdash; BSD-3-Clause License
 				</p>

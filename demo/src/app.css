@@ -13,6 +13,35 @@ body {
   line-height: 1.6;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: #6bc4f7;
+  color: #0d1117;
+  border-radius: 0 0 6px 6px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .app {
   max-width: 800px;
   margin: 0 auto;
@@ -49,6 +78,11 @@ body {
 
 .github-link:hover {
   background: #3a3a55;
+}
+
+.github-link:focus-visible {
+  outline: 2px solid #6bc4f7;
+  outline-offset: 2px;
 }
 
 .examples {
@@ -116,7 +150,7 @@ body {
   margin-top: 3rem;
   padding-top: 1.5rem;
   border-top: 1px solid #2a2a4a;
-  color: #666;
+  color: #9a9ab0;
   font-size: 0.85rem;
 }
 
@@ -127,6 +161,11 @@ body {
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+.footer a:focus-visible {
+  outline: 2px solid #6bc4f7;
+  outline-offset: 2px;
 }
 
 @media (max-width: 600px) {

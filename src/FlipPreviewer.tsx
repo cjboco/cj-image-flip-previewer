@@ -88,7 +88,7 @@ export function FlipPreviewer({
 	onImagesLoaded,
 	ref,
 }: FlipPreviewerProps) {
-	const containerRef = useRef<HTMLDivElement>(null);
+	const containerRef = useRef<HTMLElement>(null);
 	const timerRef = useRef<ReturnType<typeof setTimeout> | number | null>(null);
 
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -209,7 +209,7 @@ export function FlipPreviewer({
 	}, [mode, autoPlay, stopAnimation]);
 
 	const handlePointerDown = useCallback(
-		(e: React.PointerEvent<HTMLDivElement>) => {
+		(e: React.PointerEvent<HTMLElement>) => {
 			setIsPointerDown(true);
 
 			if (mode === "position") {
@@ -236,7 +236,7 @@ export function FlipPreviewer({
 	);
 
 	const handlePointerUp = useCallback(
-		(e: React.PointerEvent<HTMLDivElement>) => {
+		(e: React.PointerEvent<HTMLElement>) => {
 			setIsPointerDown(false);
 
 			if (mode === "position") {
@@ -248,7 +248,7 @@ export function FlipPreviewer({
 
 	// ── Position mode: mouse-position-based ──────────────────────
 	const handlePointerMove = useCallback(
-		(e: React.PointerEvent<HTMLDivElement>) => {
+		(e: React.PointerEvent<HTMLElement>) => {
 			if (mode !== "position") return;
 
 			const container = containerRef.current;
@@ -281,6 +281,42 @@ export function FlipPreviewer({
 		setActiveIndex(0);
 		activeIndexRef.current = 0;
 	}, [images]);
+
+	// ── Keyboard navigation ─────────────────────────────────────
+	const handleKeyDown = useCallback(
+		(e: React.KeyboardEvent<HTMLElement>) => {
+			if (images.length <= 1) return;
+
+			let next: number | null = null;
+
+			if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+				e.preventDefault();
+				next =
+					activeIndexRef.current + 1 >= images.length
+						? 0
+						: activeIndexRef.current + 1;
+			} else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+				e.preventDefault();
+				next =
+					activeIndexRef.current - 1 < 0
+						? images.length - 1
+						: activeIndexRef.current - 1;
+			} else if (e.key === "Home") {
+				e.preventDefault();
+				next = 0;
+			} else if (e.key === "End") {
+				e.preventDefault();
+				next = images.length - 1;
+			}
+
+			if (next !== null && next !== activeIndexRef.current) {
+				activeIndexRef.current = next;
+				setActiveIndex(next);
+				onIndexChange?.(next);
+			}
+		},
+		[images.length, onIndexChange],
+	);
 
 	// ── Render ───────────────────────────────────────────────────
 	if (images.length === 0) return null;
@@ -331,9 +367,11 @@ export function FlipPreviewer({
 		images.length > 0 ? (loadedCount / images.length) * 100 : 0;
 
 	return (
-		// biome-ignore lint/a11y/noStaticElementInteractions: container tracks pointer position for image flipping
-		<div
+		<section
 			ref={containerRef}
+			aria-roledescription="image flipper"
+			aria-label={`Image ${activeIndex + 1} of ${images.length}`}
+			tabIndex={0}
 			className={`cj-flip-previewer${className ? ` ${className}` : ""}`}
 			style={containerStyle}
 			onPointerMove={handlePointerMove}
@@ -341,11 +379,29 @@ export function FlipPreviewer({
 			onPointerUp={handlePointerUp}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
+			onKeyDown={handleKeyDown}
 		>
 			{content}
 
+			<div
+				className="cj-flip-previewer__sr-only"
+				aria-live="polite"
+				aria-atomic="true"
+			>
+				{activeImage.alt
+					? `Image ${activeIndex + 1} of ${images.length}: ${activeImage.alt}`
+					: `Image ${activeIndex + 1} of ${images.length}`}
+			</div>
+
 			{mode === "hover" && showProgress && !allLoaded && (
-				<div className="cj-flip-previewer__progress">
+				<div
+					className="cj-flip-previewer__progress"
+					role="progressbar"
+					aria-valuenow={Math.round(progressPct)}
+					aria-valuemin={0}
+					aria-valuemax={100}
+					aria-label="Loading images"
+				>
 					<div
 						className="cj-flip-previewer__progress-bar"
 						style={{ width: `${progressPct}%` }}
@@ -354,8 +410,10 @@ export function FlipPreviewer({
 			)}
 
 			{mode === "position" && debug && (
-				<div className="cj-flip-previewer__debug">{debugInfo}</div>
+				<div className="cj-flip-previewer__debug" aria-hidden="true">
+					{debugInfo}
+				</div>
 			)}
-		</div>
+		</section>
 	);
 }
