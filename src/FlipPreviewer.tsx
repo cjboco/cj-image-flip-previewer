@@ -95,6 +95,7 @@ export function FlipPreviewer({
 	const [debugInfo, setDebugInfo] = useState("");
 	const [loadedCount, setLoadedCount] = useState(0);
 	const [allLoaded, setAllLoaded] = useState(false);
+	const [isPointerDown, setIsPointerDown] = useState(false);
 
 	const activeIndexRef = useRef(0);
 	const isPlayingRef = useRef(false);
@@ -204,7 +205,16 @@ export function FlipPreviewer({
 		if (mode === "hover" && !autoPlay) {
 			stopAnimation();
 		}
+		setIsPointerDown(false);
 	}, [mode, autoPlay, stopAnimation]);
+
+	const handlePointerDown = useCallback(() => {
+		setIsPointerDown(true);
+	}, []);
+
+	const handlePointerUp = useCallback(() => {
+		setIsPointerDown(false);
+	}, []);
 
 	// ── Position mode: mouse-position-based ──────────────────────
 	const handlePointerMove = useCallback(
@@ -253,11 +263,12 @@ export function FlipPreviewer({
 		width: width ?? "100%",
 		height: height ?? "100%",
 		overflow: "hidden",
-		cursor: hasLink
-			? "pointer"
-			: mode === "position" && showCursor
-				? "ew-resize"
-				: "default",
+		cursor:
+			isPointerDown || !(mode === "position" && showCursor)
+				? hasLink
+					? "pointer"
+					: "default"
+				: "ew-resize",
 		...style,
 	};
 
@@ -295,6 +306,8 @@ export function FlipPreviewer({
 			className={`cj-flip-previewer${className ? ` ${className}` : ""}`}
 			style={containerStyle}
 			onPointerMove={handlePointerMove}
+			onPointerDown={handlePointerDown}
+			onPointerUp={handlePointerUp}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
