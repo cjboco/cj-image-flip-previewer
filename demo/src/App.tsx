@@ -86,9 +86,9 @@ export function App() {
 
         {/* ── Example 2: Hover mode (fast, no progress) ── */}
         <section className="example">
-          <h2>Hover Mode — Fast, No Progress Bar</h2>
+          <h2>Hover Mode — With Delay, No Progress Bar</h2>
           <p>
-            A faster delay with the progress indicator disabled.
+            A custom delay between frames with the progress indicator disabled.
           </p>
 
           <div className="preview-row">
