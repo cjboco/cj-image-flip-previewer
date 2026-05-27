@@ -4,7 +4,8 @@
       "Bash(npm run:*)",
       "Bash(npm link:*)",
       "Bash(npm install:*)",
-      "Bash(biome check:*)"
+      "Bash(biome check:*)",
+      "Bash(npm publish:*)"
     ]
   }
 }
