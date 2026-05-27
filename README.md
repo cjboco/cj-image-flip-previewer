@@ -1,7 +1,7 @@
 # cj-image-flip-previewer
 
-[![npm version](https://img.shields.io/npm/v/cj-image-flip-previewer)](https://www.npmjs.com/package/cj-image-flip-previewer)
-[![license](https://img.shields.io/npm/l/cj-image-flip-previewer)](https://github.com/cjboco/cj-image-flip-previewer/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/%40cjboco%2Fcj-image-flip-previewer)](https://www.npmjs.com/package/@cjboco/cj-image-flip-previewer)
+[![license](https://img.shields.io/npm/l/%40cjboco%2Fcj-image-flip-previewer)](https://github.com/cjboco/cj-image-flip-previewer/blob/master/LICENSE)
 [![deploy](https://img.shields.io/github/actions/workflow/status/cjboco/cj-image-flip-previewer/deploy-demo.yml?label=demo)](https://cjboco.github.io/cj-image-flip-previewer/)
 
 A React component for interactive image previews. Zero dependencies beyond React 19+.
@@ -15,7 +15,7 @@ One component, two modes:
 ## Install
 
 ```bash
-npm install cj-image-flip-previewer
+npm install @cjboco/cj-image-flip-previewer
 ```
 
 ## Setup
