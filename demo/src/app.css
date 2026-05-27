@@ -145,6 +145,32 @@ body {
   font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
 }
 
+.code-var-toggle {
+  background: none;
+  border: none;
+  border-bottom: 1px dashed #6bc4f7;
+  color: #6bc4f7;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  line-height: inherit;
+}
+
+.code-var-toggle:hover {
+  color: #9dd5fa;
+  border-bottom-color: #9dd5fa;
+}
+
+.code-var-toggle:focus-visible {
+  outline: 2px solid #6bc4f7;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.code-var-expansion {
+  color: #8b949e;
+}
+
 .footer {
   text-align: center;
   margin-top: 3rem;
