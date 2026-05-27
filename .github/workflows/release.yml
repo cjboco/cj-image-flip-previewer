@@ -1,4 +1,4 @@
-name: Create Release on Version Change
+name: Release and Publish on Version Change
 
 on:
   push:
@@ -10,10 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 2
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
 
       - name: Check if version changed
         id: version
@@ -29,6 +35,20 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Version unchanged: $NEW_VERSION"
           fi
+
+      - name: Install dependencies
+        if: steps.version.outputs.changed == 'true'
+        run: npm ci
+
+      - name: Build
+        if: steps.version.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Publish to npm with provenance
+        if: steps.version.outputs.changed == 'true'
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         if: steps.version.outputs.changed == 'true'
