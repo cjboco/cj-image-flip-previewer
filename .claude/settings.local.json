@@ -6,7 +6,8 @@
       "Bash(npm install:*)",
       "Bash(biome check:*)",
       "Bash(npm publish:*)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(gh release:*)"
     ]
   }
 }
