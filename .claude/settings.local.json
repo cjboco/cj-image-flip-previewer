@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm run:*)",
       "Bash(npm link:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(biome check:*)"
     ]
   }
 }
