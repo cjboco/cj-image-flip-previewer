@@ -186,7 +186,7 @@ export function App() {
                 images={popeye}
                 width={320}
                 height={240}
-                delay={300}
+                delay={150}
                 autoPlay
               />
             </div>
@@ -197,7 +197,7 @@ export function App() {
   images={popeye}
   width={320}
   height={240}
-  delay={300}
+  delay={150}
   autoPlay
 />`}</CodeBlock>
         </section>
