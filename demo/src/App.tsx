@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { FlipPreviewer } from "../../src";
 import type { FlipPreviewerImage } from "../../src";
+import { useState } from "react";
 
 const BASE = import.meta.env.BASE_URL;
 
