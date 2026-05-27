@@ -49,7 +49,7 @@ export interface FlipPreviewerProps {
    * - `"contain"` — image fits entirely within the container, may letterbox
    */
   fit?: "cover" | "contain";
-  /** Delay in ms between frame transitions — only used in "hover" mode (default: 450) */
+  /** Delay in ms between frame transitions — only used in "hover" mode. Omit for max speed (requestAnimationFrame). */
   delay?: number;
   /** Start animating automatically without hover — only used in "hover" mode (default: false) */
   autoPlay?: boolean;
@@ -77,7 +77,7 @@ export function FlipPreviewer({
   width,
   height,
   fit = "cover",
-  delay = 450,
+  delay,
   autoPlay = false,
   showProgress = true,
   showCursor = true,
@@ -89,7 +89,7 @@ export function FlipPreviewer({
   ref,
 }: FlipPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | number | null>(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [debugInfo, setDebugInfo] = useState("");
