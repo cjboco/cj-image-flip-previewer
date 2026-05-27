@@ -23,7 +23,7 @@ npm install @cjboco/cj-image-flip-previewer
 Import the stylesheet once in your app (e.g., in your root layout or entry file):
 
 ```tsx
-import "cj-image-flip-previewer/styles.css";
+import "@cjboco/cj-image-flip-previewer/styles.css";
 ```
 
 ---
@@ -33,7 +33,7 @@ import "cj-image-flip-previewer/styles.css";
 Image changes based on where the mouse is horizontally within the container. Move left-to-right to cycle through all images.
 
 ```tsx
-import { FlipPreviewer } from "cj-image-flip-previewer";
+import { FlipPreviewer } from "@cjboco/cj-image-flip-previewer";
 
 <FlipPreviewer
   width={320}
@@ -108,7 +108,7 @@ Use a ref to programmatically start and pause the animation:
 
 ```tsx
 import { useRef } from "react";
-import { FlipPreviewer, type FlipPreviewerRef } from "cj-image-flip-previewer";
+import { FlipPreviewer, type FlipPreviewerRef } from "@cjboco/cj-image-flip-previewer";
 
 function ControlledPreviewer() {
   const ref = useRef<FlipPreviewerRef>(null);
@@ -181,7 +181,7 @@ function ControlledPreviewer() {
 The included stylesheet uses `@layer components`, which works both as standalone CSS and with Tailwind CSS v4+. Import it once in your app:
 
 ```tsx
-import "cj-image-flip-previewer/styles.css";
+import "@cjboco/cj-image-flip-previewer/styles.css";
 ```
 
 ### Using with Tailwind CSS
