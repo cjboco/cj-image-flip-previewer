@@ -228,7 +228,7 @@ export function FlipPreviewer({
       if (debug) {
         const y = e.clientY - rect.top;
         setDebugInfo(
-          `x:${Math.round(x)}, y:${Math.round(y)}, idx:${pos}/${images.length}, w:${Math.round(rect.width)}, h:${Math.round(rect.height)}`
+          `x:${Math.round(x)}, y:${Math.round(y)}, img:${pos + 1}/${images.length}, w:${Math.round(rect.width)}, h:${Math.round(rect.height)}`
         );
       }
     },
