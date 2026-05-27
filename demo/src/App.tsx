@@ -63,9 +63,9 @@ function CodeBlock({
 
 	const parts: React.ReactNode[] = [];
 	let lastIndex = 0;
-	let match: RegExpExecArray | null;
+	let match = pattern.exec(code);
 
-	while ((match = pattern.exec(code)) !== null) {
+	while (match !== null) {
 		if (match.index > lastIndex) {
 			parts.push(code.slice(lastIndex, match.index));
 		}
@@ -102,6 +102,7 @@ function CodeBlock({
 		);
 
 		lastIndex = match.index + match[0].length;
+		match = pattern.exec(code);
 	}
 
 	if (lastIndex < code.length) {
