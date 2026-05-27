@@ -125,13 +125,17 @@ export function FlipPreviewer({
     });
   }, [mode, images, onImagesLoaded]);
 
-  // ── Hover mode: timer-based animation ────────────────────────
+  // ── Hover mode: animation ────────────────────────────────────
   const clearTimer = useCallback(() => {
     if (timerRef.current !== null) {
-      clearTimeout(timerRef.current);
+      if (delay != null) {
+        clearTimeout(timerRef.current as ReturnType<typeof setTimeout>);
+      } else {
+        cancelAnimationFrame(timerRef.current as number);
+      }
       timerRef.current = null;
     }
-  }, []);
+  }, [delay]);
 
   const advanceFrame = useCallback(() => {
     if (!isPlayingRef.current) return;
@@ -146,14 +150,22 @@ export function FlipPreviewer({
     setActiveIndex(next);
     onIndexChange?.(next);
 
-    timerRef.current = setTimeout(advanceFrame, delay);
+    if (delay != null) {
+      timerRef.current = setTimeout(advanceFrame, delay);
+    } else {
+      timerRef.current = requestAnimationFrame(advanceFrame);
+    }
   }, [images.length, delay, onIndexChange]);
 
   const startAnimation = useCallback(() => {
     if (!allLoaded || images.length <= 1) return;
     isPlayingRef.current = true;
     clearTimer();
-    timerRef.current = setTimeout(advanceFrame, delay);
+    if (delay != null) {
+      timerRef.current = setTimeout(advanceFrame, delay);
+    } else {
+      timerRef.current = requestAnimationFrame(advanceFrame);
+    }
   }, [allLoaded, images.length, delay, advanceFrame, clearTimer]);
 
   const stopAnimation = useCallback(() => {
