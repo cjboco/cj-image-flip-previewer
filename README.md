@@ -9,8 +9,8 @@ A React component for interactive image previews. Zero dependencies beyond React
 **[Live Demo](https://cjboco.github.io/cj-image-flip-previewer/)**
 
 One component, two modes:
-- **`mode="position"`** — Image changes based on horizontal mouse/touch position (360-degree product views)
-- **`mode="hover"`** — Images auto-cycle on a timer when hovered (video thumbnail previews)
+- **`mode="position"`** - Image changes based on horizontal mouse/touch position (360-degree product views)
+- **`mode="hover"`** - Images auto-cycle on a timer when hovered (video thumbnail previews)
 
 ## Install
 
@@ -143,16 +143,16 @@ function ControlledPreviewer() {
 | `images` | `FlipPreviewerImage[]` | *required* | Array of images |
 | `width` | `number \| string` | `"100%"` | Container width |
 | `height` | `number \| string` | `"100%"` | Container height |
-| `delay` | `number` | — | Ms between frames (hover mode only). Omit for max speed (requestAnimationFrame). |
+| `delay` | `number` | - | Ms between frames (hover mode only). Omit for max speed (requestAnimationFrame). |
 | `autoPlay` | `boolean` | `false` | Auto-start animation (hover mode only) |
 | `showProgress` | `boolean` | `true` | Show preload progress bar (hover mode only) |
 | `showCursor` | `boolean` | `true` | Show horizontal resize cursor (position mode only) |
 | `debug` | `boolean` | `false` | Show debug overlay (position mode only) |
-| `className` | `string` | — | Additional CSS class(es) |
-| `style` | `CSSProperties` | — | Additional inline styles |
-| `onIndexChange` | `(index: number) => void` | — | Called when the active image changes |
-| `onImagesLoaded` | `() => void` | — | Called when all images finish preloading (hover mode only) |
-| `ref` | `Ref<FlipPreviewerRef>` | — | Imperative handle for start/pause (hover mode only) |
+| `className` | `string` | - | Additional CSS class(es) |
+| `style` | `CSSProperties` | - | Additional inline styles |
+| `onIndexChange` | `(index: number) => void` | - | Called when the active image changes |
+| `onImagesLoaded` | `() => void` | - | Called when all images finish preloading (hover mode only) |
+| `ref` | `Ref<FlipPreviewerRef>` | - | Imperative handle for start/pause (hover mode only) |
 
 ### FlipPreviewerImage
 
@@ -186,7 +186,7 @@ import "@cjboco/cj-image-flip-previewer/styles.css";
 
 ### Using with Tailwind CSS
 
-Since the component styles are in the `components` layer, Tailwind utility classes automatically take priority — no `!important` needed. Just add classes via the `className` prop:
+Since the component styles are in the `components` layer, Tailwind utility classes automatically take priority - no `!important` needed. Just add classes via the `className` prop:
 
 ```tsx
 <FlipPreviewer
@@ -257,4 +257,4 @@ BSD-3-Clause
 
 ## Author
 
-Doug Jones — [Creative Juices, Bo. Co.](https://www.cjboco.com)
+Doug Jones - [Creative Juices, Bo. Co.](https://www.cjboco.com)

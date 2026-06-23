@@ -143,7 +143,7 @@ export function App() {
 			<header className="header">
 				<h1>CJ Image Flip Previewer</h1>
 				<p className="subtitle">
-					React components for interactive image previews — flip through images
+					React components for interactive image previews - flip through images
 					by mouse position or animate frames on hover like a video previewer.
 				</p>
 				<a
@@ -165,7 +165,7 @@ export function App() {
 					<p>
 						Images auto-cycle on a timer when you hover over the container.
 						A progress bar displays while images preload. Also supports
-						keyboard navigation — use the arrow keys to step through frames,
+						keyboard navigation - use the arrow keys to step through frames,
 						or <kbd>Home</kbd>/<kbd>End</kbd> to jump to the first or last
 						frame.
 					</p>
@@ -195,10 +195,10 @@ export function App() {
 
 				{/* ── Example 2: Hover mode (fast, no progress) ── */}
 				<section className="example">
-					<h2>Hover Mode — With Delay, No Progress Bar</h2>
+					<h2>Hover Mode - With Delay, No Progress Bar</h2>
 					<p>
 						The <code>delay</code> prop controls playback speed in milliseconds
-						between frames — useful for slower, more deliberate reveals. Here
+						between frames - useful for slower, more deliberate reveals. Here
 						the progress bar is hidden
 						with <code>showProgress=&#123;false&#125;</code>.
 					</p>
@@ -267,7 +267,7 @@ export function App() {
 
 				{/* ── Example 4: Position mode, no cursor ─────── */}
 				<section className="example">
-					<h2>Position Mode — No Cursor</h2>
+					<h2>Position Mode - No Cursor</h2>
 					<p>
 						Same as position mode but with the horizontal resize cursor disabled
 						via <code>showCursor=&#123;false&#125;</code>. Useful when embedding
@@ -302,7 +302,7 @@ export function App() {
 
 				{/* ── Example 5: Hover mode with autoPlay ──────── */}
 				<section className="example">
-					<h2>Hover Mode — Auto Play</h2>
+					<h2>Hover Mode - Auto Play</h2>
 					<p>
 						Starts animating automatically on mount without requiring a hover.
 						Ideal for hero banners, product showcases, or anywhere you want

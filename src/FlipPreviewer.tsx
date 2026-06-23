@@ -13,7 +13,7 @@ export interface FlipPreviewerImage {
 	src: string;
 	/** Alt text for the image */
 	alt?: string;
-	/** Optional link URL — clicking the image navigates here */
+	/** Optional link URL - clicking the image navigates here */
 	href?: string;
 	/** Link title attribute */
 	title?: string;
@@ -33,8 +33,8 @@ export interface FlipPreviewerRef {
 export interface FlipPreviewerProps {
 	/**
 	 * How images cycle:
-	 * - `"position"` — image changes based on horizontal mouse/touch position (default)
-	 * - `"hover"` — images auto-cycle on a timer when hovered
+	 * - `"position"` - image changes based on horizontal mouse/touch position (default)
+	 * - `"hover"` - images auto-cycle on a timer when hovered
 	 */
 	mode?: "position" | "hover";
 	/** Array of images to flip through */
@@ -45,19 +45,19 @@ export interface FlipPreviewerProps {
 	height?: number | string;
 	/**
 	 * How images fit within the container:
-	 * - `"cover"` — image covers the entire container, may crop (default)
-	 * - `"contain"` — image fits entirely within the container, may letterbox
+	 * - `"cover"` - image covers the entire container, may crop (default)
+	 * - `"contain"` - image fits entirely within the container, may letterbox
 	 */
 	fit?: "cover" | "contain";
-	/** Delay in ms between frame transitions — only used in "hover" mode. Omit for max speed (requestAnimationFrame). */
+	/** Delay in ms between frame transitions - only used in "hover" mode. Omit for max speed (requestAnimationFrame). */
 	delay?: number;
-	/** Start animating automatically without hover — only used in "hover" mode (default: false) */
+	/** Start animating automatically without hover - only used in "hover" mode (default: false) */
 	autoPlay?: boolean;
-	/** Show a progress bar while images preload — only used in "hover" mode (default: true) */
+	/** Show a progress bar while images preload - only used in "hover" mode (default: true) */
 	showProgress?: boolean;
 	/** Show a horizontal resize cursor when in "position" mode (default: true) */
 	showCursor?: boolean;
-	/** Show debug overlay with mouse coordinates and position info — only used in "position" mode */
+	/** Show debug overlay with mouse coordinates and position info - only used in "position" mode */
 	debug?: boolean;
 	/** Additional CSS class name(s) for the container */
 	className?: string;
@@ -65,7 +65,7 @@ export interface FlipPreviewerProps {
 	style?: CSSProperties;
 	/** Callback fired when the active image index changes */
 	onIndexChange?: (index: number) => void;
-	/** Callback fired when all images have finished preloading — only used in "hover" mode */
+	/** Callback fired when all images have finished preloading - only used in "hover" mode */
 	onImagesLoaded?: () => void;
 	/** Imperative handle ref for start/pause control in "hover" mode */
 	ref?: Ref<FlipPreviewerRef>;
