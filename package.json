@@ -1,6 +1,6 @@
 {
   "name": "@cjboco/cj-image-flip-previewer",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "React components for interactive image previews - flip through images by mouse position (FlipPreviewer) or animate frames on hover like a video previewer (VideoPreviewer).",
   "author": "Doug Jones",
   "license": "BSD-3-Clause",
