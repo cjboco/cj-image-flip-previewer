@@ -75,5 +75,8 @@
     "react-dom": "^19.2.7",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   }
 }
