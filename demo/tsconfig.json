@@ -10,7 +10,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client"],
-    "rootDir": ".."
+    "rootDir": "..",
+    "noEmit": true
   },
   "include": ["src", "../src/index.ts", "../src/FlipPreviewer.tsx"]
 }

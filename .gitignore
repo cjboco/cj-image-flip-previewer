@@ -2,3 +2,7 @@ node_modules
 dist
 .DS_Store
 _resources
+
+# tsc output emitted next to sources (demo build runs tsc before vite)
+src/*.js
+demo/src/*.js
