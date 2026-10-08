@@ -53,6 +53,12 @@ export interface FlipPreviewerProps {
 	delay?: number;
 	/** Start animating automatically without hover - only used in "hover" mode (default: false) */
 	autoPlay?: boolean;
+	/**
+	 * Number of frames kept mounted on each side of the active frame (default: 3).
+	 * Mounted frames stay decoded so switching to them is an opacity flip; frames
+	 * outside the window are unmounted so the browser can free their memory.
+	 */
+	frameBuffer?: number;
 	/** Show a progress bar while images preload - only used in "hover" mode (default: true) */
 	showProgress?: boolean;
 	/** Show a horizontal resize cursor when in "position" mode (default: true) */
@@ -79,6 +85,7 @@ export function FlipPreviewer({
 	fit = "cover",
 	delay,
 	autoPlay = false,
+	frameBuffer = 3,
 	showProgress = true,
 	showCursor = true,
 	debug = false,
@@ -96,6 +103,10 @@ export function FlipPreviewer({
 	const [loadedCount, setLoadedCount] = useState(0);
 	const [allLoaded, setAllLoaded] = useState(false);
 	const [isPointerDown, setIsPointerDown] = useState(false);
+	const [loadedSrcs, setLoadedSrcs] = useState<ReadonlySet<string>>(
+		() => new Set(),
+	);
+	const [shownIndex, setShownIndex] = useState(0);
 
 	const activeIndexRef = useRef(0);
 	const isPlayingRef = useRef(false);
@@ -318,6 +329,19 @@ export function FlipPreviewer({
 		[images.length, onIndexChange],
 	);
 
+	const markLoaded = useCallback((src: string) => {
+		setLoadedSrcs((prev) => (prev.has(src) ? prev : new Set(prev).add(src)));
+	}, []);
+
+	// ── Frame window ─────────────────────────────────────────────
+	// Keep showing the last loaded frame until the active one has loaded,
+	// so a fast scrub never flashes an empty container.
+	const isLoaded = (i: number) =>
+		i < images.length && loadedSrcs.has(images[i].src);
+	const nextShown =
+		isLoaded(activeIndex) || !isLoaded(shownIndex) ? activeIndex : shownIndex;
+	if (nextShown !== shownIndex) setShownIndex(nextShown);
+
 	// ── Render ───────────────────────────────────────────────────
 	if (images.length === 0) return null;
 
@@ -339,15 +363,33 @@ export function FlipPreviewer({
 		...style,
 	};
 
-	const imgElement = (
-		<img
-			src={activeImage.src}
-			alt={activeImage.alt ?? ""}
-			className="cj-flip-previewer__img"
-			style={{ objectFit: fit }}
-			draggable={false}
-		/>
-	);
+	const mounted = new Set<number>([nextShown]);
+	const buffer = Math.max(0, Math.floor(frameBuffer));
+	for (let offset = -buffer; offset <= buffer; offset++) {
+		const n = images.length;
+		mounted.add((((activeIndex + offset) % n) + n) % n);
+	}
+
+	const imgElement = [...mounted]
+		.sort((a, b) => a - b)
+		.map((i) => {
+			const image = images[i];
+			const visible = i === nextShown;
+			return (
+				<img
+					key={i}
+					src={image.src}
+					alt={visible ? (image.alt ?? "") : ""}
+					aria-hidden={visible ? undefined : true}
+					className={`cj-flip-previewer__img${visible ? "" : " cj-flip-previewer__img--hidden"}`}
+					style={{ objectFit: fit }}
+					draggable={false}
+					decoding="async"
+					onLoad={() => markLoaded(image.src)}
+					onError={() => markLoaded(image.src)}
+				/>
+			);
+		});
 
 	const content = hasLink ? (
 		<a

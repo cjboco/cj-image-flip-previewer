@@ -28,6 +28,13 @@
     height: 100%;
     object-fit: cover;
     pointer-events: none;
+    will-change: opacity;
+  }
+
+  .cj-flip-previewer__img--hidden {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
   }
 
   .cj-flip-previewer__link {

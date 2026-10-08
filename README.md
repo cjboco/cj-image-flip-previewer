@@ -145,6 +145,7 @@ function ControlledPreviewer() {
 | `height` | `number \| string` | `"100%"` | Container height |
 | `delay` | `number` | - | Ms between frames (hover mode only). Omit for max speed (requestAnimationFrame). |
 | `autoPlay` | `boolean` | `false` | Auto-start animation (hover mode only) |
+| `frameBuffer` | `number` | `3` | Frames kept mounted and decoded on each side of the active frame. Higher is smoother, lower uses less memory. |
 | `showProgress` | `boolean` | `true` | Show preload progress bar (hover mode only) |
 | `showCursor` | `boolean` | `true` | Show horizontal resize cursor (position mode only) |
 | `debug` | `boolean` | `false` | Show debug overlay (position mode only) |
